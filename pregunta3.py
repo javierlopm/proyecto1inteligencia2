@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-import numpy   as np
-from csv       import reader
-from pregunta1 import iteraciones
+import numpy     as np
+from csv         import reader
+from pregunta1   import iteraciones
+from collections import Counter
 
 np.random.seed(42)
 
-# Convertir una columna de etiquetas a valores numéricos 
+# Convertir una columna de etiquetas a valores numéricos y colocar la moda en vacios
 def from_nominal(matrix):
-    return np.transpose(np.matrix(np.unique(np.asarray(matrix),return_inverse=True)[1]))
+    uniques = np.unique(np.asarray(matrix),return_inverse=True)[1]
+    mode    = Counter(uniques.tolist()).most_common()[0][0]
+    res     = np.transpose(np.matrix(uniques))
+    # res[matrix==''] = mode
+    return res
 
 # Lectura de archivo, conversión de tipos y randomize de filas
 file = open("AmesHousing.csv","r")
@@ -20,14 +25,30 @@ nominal_cols = [3 ,6 ,7 ,8 ,9, 10,11,12,13,14
                ,30,31,32,33,34,36,40,41,42,43
                ,54,56,58,59,61,64,65,66,73,74
                ,75,79,80]
-for col in nominal_cols:
-    data[:,col] = from_nominal(data[:,col])
 
-# Separando header de datos y convirtiendo a float
+not_nominals = filter(lambda x:not x in nominal_cols,range(0,83))
+
+# Completar valores vacíos y modificar nominales
+for col in nominal_cols:
+    data[1:,col] = from_nominal(data[1:,col])
+
+# Remover header, cambiar vacíos en columnas no nominales por media
 data   = data[1:]
 header = data[0]
-data[data==''] = 0
-data = data.astype(np.float)
+data[data==''] = "NaN"
+data           = data.astype(np.float)
+data = np.where(np.isnan(data), np.ma.array(data, mask=np.isnan(data)).mean(axis=0), data)
+
+# for col in not_nominals:
+#     import pdb;pdb.set_trace()
+#     np.nanmean(data[1:,col])
+
+#     data[1:,col]
+
+
+# Completar vacíos para no nominales
+
+# Separando header de datos y convirtiendo a float
 
 np.random.shuffle(data)
 
@@ -54,7 +75,6 @@ print(len(theta.tolist()[0]))
 print('test')
 print(np.dot(theta,training_d[:,:-1].T))
 print(training_d.ndim)'''
-# import pdb;  pdb.set_trace()
 
 res = iteraciones(training_d[:,:-1].T
                  ,training_d[:,-1]
