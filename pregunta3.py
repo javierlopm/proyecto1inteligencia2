@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import numpy     as np
 from csv         import reader
-from pregunta1   import iteraciones
+#from pregunta1   import iteraciones
+from test   import gradientDescent
 from collections import Counter
-
+from decimal import Decimal
 np.random.seed(42)
 
 # Convertir una columna de etiquetas a valores numéricos y colocar la moda en vacios
@@ -59,10 +60,14 @@ n = data.shape[0]*0.8
 # Removiendo la primera columna de ids y agregando un vector de 1's para
 # poder realizar la regresión lineal
 training_d = np.column_stack((np.ones((n,1)),data[:n,:]))
-# test_d     = np.column_stack((np.ones((N-n+1,1)),data[n:,:]))
 
+# test_d     = np.column_stack((np.ones((N-n+1,1)),data[n:,:]))
+print("test shape=%s" % str(training_d.shape))
 iterations = 200
-theta      = np.ones((1,data.shape[1]))
+x = np.array(training_d[:,:-1].tolist(), dtype=np.float128)
+y = training_d[:,-1].T.tolist()
+y = np.array(y[0], dtype=np.float128)
+theta      = np.ones(data.shape[1], dtype=np.float128)
 '''print('xxxxxxxx')
 print(len(training_d[:,:-1].T.tolist()))
 print(len(training_d[:,:-1].T.tolist()[0]))
@@ -76,11 +81,12 @@ print('test')
 print(np.dot(theta,training_d[:,:-1].T))
 print(training_d.ndim)'''
 
-res = iteraciones(training_d[:,:-1].T
-                 ,training_d[:,-1]
-                 ,n
+res = gradientDescent(x
+                 ,y
                  ,theta
                  ,0.3
+                 ,n
                  ,iterations)
+print(len(res[0]),len(res[1]))
 
 # RECORDAR REINICIAR THETA EN PREGUNTA 2

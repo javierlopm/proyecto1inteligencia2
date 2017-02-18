@@ -22,24 +22,31 @@ def gradientDescent(xi,yi,n,theta,alpha):
 	#xi=np.matrix(xi)
 	#yi=np.matrix(yi)
 	hoxy = np.dot(theta,xi)-yi
-	print('hola')
-	try:
-		print('np')
-		print(theta.T.shape)
-		print(xi.shape)
-		print(yi.shape)
-		print(hoxy.shape)
-	except:
-		print('np2')
-		print(len(theta))
-		print(1)
-		print(len(xi))
-		print(len(xi[0]))
-		print(len(yi))
-		print(1)
-		print(len(hoxy))
-		print(1)
-	print('hola')
+	# try:
+	# 	print('np')
+	# 	print(theta.T.shape)
+	# 	print(xi.shape)
+	# 	print(yi.shape)
+	# 	print(hoxy.shape)
+	# except:
+	# 	print('np2')
+	# 	try:
+	# 		print('(%d,%d)'%  (len(theta), len(theta[0])))
+	# 	except:
+	# 		print('(%d,%d)'%  (len(theta), 1))
+	# 	try:
+	# 		print('(%d,%d)'%  (len(xi), len(xi[0])))
+	# 	except:
+	# 		print('(%d,%d)'%  (len(xi), 1))
+	# 	try:
+	# 		print('(%d,%d)'%  (len(yi), len(yi[0])))
+	# 	except:
+	# 		print('(%d,%d)'%  (len(yi), 1))
+	# 	try:
+	# 		print('(%d,%d)'%  (len(hoxy), len(hoxy[0])))
+	# 	except:
+	# 		print('(%d,%d)'%  (len(hoxy), 1))
+	# print('hola')
 
 	try:
 		aux = xi.T
