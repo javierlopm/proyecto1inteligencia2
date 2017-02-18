@@ -78,7 +78,7 @@ plt.show()
 ################
 
 
-iterations = 10
+iterations = 100
 
 # Lectura del archivo
 file = open("x08.txt","r")
@@ -138,8 +138,8 @@ for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
     xx    = val[2]
     plt.plot(xx, jos, label="multi\nline")
     print ("theta for alpha = {} ----> {}".format(alpha,theta))
-    print ("xx    for alpha = {} ----> {}".format(alpha,xx))
-    print ("jos             = %s\n\n"%jos)
+    # print ("xx    for alpha = {} ----> {}".format(alpha,xx))
+    # print ("jos             = %s\n\n"%jos)
 
 # Impresion de Graficos y resultados
 #plt.yscale('log',basey=10)

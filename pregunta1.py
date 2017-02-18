@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 # Proyecto 1 - Primera Pregunta
-# Universidad Simón Bolivar, 2017.
+# Universidad Simón Bolívar, 2017.
 # Author: Carlos Farinha
 # Last Revision: 17/02/17
 # Modified by: Carlos Farinha, Javier López
