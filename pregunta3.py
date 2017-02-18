@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import numpy             as np
+import numpy   as np
 from csv       import reader
 from pregunta1 import iteraciones
 
@@ -26,7 +26,7 @@ for col in nominal_cols:
 # Separando header de datos y convirtiendo a float
 data   = data[1:]
 header = data[0]
-data[data==''] = "NaN"
+data[data==''] = 0
 data = data.astype(np.float)
 
 np.random.shuffle(data)
@@ -42,7 +42,18 @@ training_d = np.column_stack((np.ones((n,1)),data[:n,:]))
 
 iterations = 200
 theta      = np.ones((1,data.shape[1]))
-
+'''print('xxxxxxxx')
+print(len(training_d[:,:-1].T.tolist()))
+print(len(training_d[:,:-1].T.tolist()[0]))
+print('yyyyyyyy')
+print(len(training_d[:,-1].tolist()))
+print(len(training_d[:,-1].tolist()[0]))
+print('theta')
+print(len(theta.tolist()))
+print(len(theta.tolist()[0]))
+print('test')
+print(np.dot(theta,training_d[:,:-1].T))
+print(training_d.ndim)'''
 # import pdb;  pdb.set_trace()
 
 res = iteraciones(training_d[:,:-1].T

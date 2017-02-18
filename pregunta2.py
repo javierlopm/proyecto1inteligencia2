@@ -52,6 +52,15 @@ theta.extend([1]*(len(xi)))
 xi = p.normalizacion(xi,newlines,1)
 
 # Iteraciones del proceso
+print(len(xi))
+print(len(xi[0]))
+print(len(yi))
+print(1)
+print(len(theta))
+print(1)
+print((np.dot(theta,xi)).ndim)
+print('SSSSSSSSSS')
+
 val = p.iteraciones(xi,yi,n,theta,0.1,iterations)
 theta = val[0]
 jos = val[1]
@@ -67,6 +76,7 @@ plt.show()
 # Impresion de Graficos y resultados 1.1 b)	
 plt.scatter(xi[1], yi, s=10, alpha=0.5)
 xx = np.linspace(-1, 8)
+print(len(theta))
 plt.plot(xx, np.add(np.dot(theta[1],xx),theta[0]) , label="multi\nline")
 plt.title ('1.1 b)  Scatteplot y curva min de funcion de costo')
 plt.ylabel('Valor de y ')

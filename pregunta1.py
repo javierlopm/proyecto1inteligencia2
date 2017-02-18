@@ -17,8 +17,37 @@ import numpy as np
 
 # Funcion de Gradient Descent
 def gradientDescent(xi,yi,n,theta,alpha):
+	#print(theta)
+	#theta=np.matrix(theta)
+	#xi=np.matrix(xi)
+	#yi=np.matrix(yi)
 	hoxy = np.dot(theta,xi)-yi
-	hoxyx = np.multiply(hoxy,xi)
+	print('hola')
+	try:
+		print('np')
+		print(theta.T.shape)
+		print(xi.shape)
+		print(yi.shape)
+		print(hoxy.shape)
+	except:
+		print('np2')
+		print(len(theta))
+		print(1)
+		print(len(xi))
+		print(len(xi[0]))
+		print(len(yi))
+		print(1)
+		print(len(hoxy))
+		print(1)
+	print('hola')
+
+	try:
+		aux = xi.T
+	except:
+		aux = xi
+	#print(aux[1,1])
+	#hoxyx = np.dot(hoxy,aux)
+	hoxyx = np.multiply(hoxy,aux)
 	dojo =[]	
 	for each in hoxyx:
 		dojo.append(np.sum(each))
