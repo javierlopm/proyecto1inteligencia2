@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # Proyecto 1 - Primera Pregunta
-# Universidad Simon Bolivar, 2017.
+# Universidad Simón Bolívar, 2017.
 # Author: Carlos Farinha
-# Last Revision: 10/02/17
-# Modified by: Carlos Farinha
+# Last Revision: 17/02/17
+# Modified by: Carlos Farinha, Javier López
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -104,7 +105,7 @@ xi.extend(np.transpose(x))
 #Inicializacion del vector theta
 theta = [0]
 theta.extend([1]*(len(xi)))
-
+m = len(xi)
 #Numero de casos
 n = len(yi)
 xx = range(0,100)
@@ -120,59 +121,25 @@ theta = val[0]
 jos = val[1]
 xx = val[2]
 plt.plot(xx, jos, label="multi\nline")
-
 print ("theta for alpha = 0,1 ----> %s" %theta)
 print ("xx for alpha = 0,1 ----> %s" %xx)
 print("jos : %s"%jos)
-jos = []
-val = p.iteraciones(xi,yi,n,theta,0.3,iterations)
-theta = val[0]
-jos = val[1]
-xx = val[2]
-plt.plot(xx, jos, label="multi\nline")
 
-print ("theta for alpha = 0,3 ----> %s" %theta)
-print ("xx for alpha = 0,3 ----> %s" %xx)
-print("jos : %s"%jos)
-jos = []
-val = p.iteraciones(xi,yi,n,theta,0.5,iterations)
-theta = val[0]
-jos = val[1]
-xx = val[2]
-plt.plot(xx, jos, label="multi\nline")
 
-print ("theta for alpha = 0,5 ----> %s" %theta)
-print ("xx for alpha = 0,5 ----> %s" %xx)
-print("jos : %s"%jos)
-jos = []
-val = p.iteraciones(xi,yi,n,theta,0.7,iterations)
-theta = val[0]
-jos = val[1]
-xx = val[2]
-plt.plot(xx, jos, label="multi\nline")
+for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
+    # theta = [0]
+    # theta.extend([1]*m)
+    theta    = np.ones((1,m+1))
+    theta[0] = 0
 
-print ("theta for alpha = 0,7 ----> %s" %theta)
-print ("xx for alpha = 0,7 ----> %s" %xx)
-print("jos : %s"%jos)
-jos = []
-val = p.iteraciones(xi,yi,n,theta,0.9,iterations)
-theta = val[0]
-jos = val[1]
-xx = val[2]
-plt.plot(xx, jos, label="multi\nline")
-
-print ("theta for alpha = 0,9 ----> %s" %theta)
-print ("xx for alpha = 0,9 ----> %s" %xx)
-print("jos : %s"%jos)
-jos = []
-val = p.iteraciones(xi,yi,n,theta,1,iterations)
-theta = val[0]
-jos = val[1]
-xx = val[2]
-plt.plot(xx, jos, label="multi\nline")
-print ("theta for alpha = 1 ----> %s" %theta)
-print ("xx for alpha = 1 ----> %s" %xx)
-print("jos : %s"%jos)
+    val = p.iteraciones(xi,yi,n,theta,alpha,iterations)
+    theta = val[0]
+    jos   = val[1]
+    xx    = val[2]
+    plt.plot(xx, jos, label="multi\nline")
+    print ("theta for alpha = {} ----> {}".format(alpha,theta))
+    print ("xx    for alpha = {} ----> {}".format(alpha,xx))
+    print ("jos             = %s\n\n"%jos)
 
 # Impresion de Graficos y resultados
 #plt.yscale('log',basey=10)
