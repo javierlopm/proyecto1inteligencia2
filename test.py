@@ -1,13 +1,14 @@
 import numpy as np
 import random
 
-def costFuntionJ(xi,yi,theta,n):
-    hoxy = np.dot(theta,xi)-yi
-    j = float(np.sum(np.power(hoxy,2)))/float(2*n)
-    return (j)
-
 # m denotes the number of examples here, not the number of features
 def gradientDescent(x, y, theta, alpha, m, numIterations):
+    if (type(theta) is list):
+        theta = np.array(theta)
+    if (type(x) is list):
+        x = np.array(x).T
+    if (type(y) is list):
+        y = np.array(y)
     print(theta.shape)
     print(x.shape)
     print(y.shape)
