@@ -2,9 +2,9 @@
 import numpy     as np
 from csv         import reader
 #from pregunta1   import iteraciones
-from test   import gradientDescent
+from test        import gradientDescent,normalize
 from collections import Counter
-from decimal import Decimal
+from decimal     import Decimal
 np.random.seed(42)
 
 # Convertir una columna de etiquetas a valores numéricos y colocar la moda en vacios
@@ -39,6 +39,8 @@ header = data[0]
 data[data==''] = "NaN"
 data           = data.astype(np.float)
 data = np.where(np.isnan(data), np.ma.array(data, mask=np.isnan(data)).mean(axis=0), data)
+normalize(data)
+# import pdb; pdb.set_trace()
 
 # for col in not_nominals:
 #     import pdb;pdb.set_trace()
@@ -84,7 +86,7 @@ print(training_d.ndim)'''
 res = gradientDescent(x
                  ,y
                  ,theta
-                 ,0.3
+                 ,0.1
                  ,n
                  ,iterations)
 print(len(res[0]),len(res[1]))
