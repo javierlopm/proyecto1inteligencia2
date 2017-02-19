@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 # Proyecto 1 - Primera Pregunta
 # Universidad Simón Bolívar, 2017.
-# Author: Carlos Farinha
-# Last Revision: 17/02/17
-# Modified by: Carlos Farinha, Javier López
+# Authors: Carlos Farinha   09-10270
+#          Javier López     11-10552
+#          Nabil J. Marquez 11-10683
+# Last Revision: 18/02/17
 
 import matplotlib.pyplot as plt
 import numpy as np
 import functools
 import operator as op
 import pregunta1 as p
+
 #Variables Globales
 iterations = 100
-
 
 # Pregunta 1.1 
 #a)  Muestre la curva de convergencia (J() vs. Iteraciones) para alpha = 0.1
@@ -51,15 +52,6 @@ theta.extend([1]*(len(xi)))
 xi = p.normalizacion_l(xi,newlines,1)
 
 # Iteraciones del proceso
-print(len(xi))
-print(len(xi[0]))
-print(len(yi))
-print(1)
-print(len(theta))
-print(1)
-print((np.dot(theta,xi)).ndim)
-print('SSSSSSSSSS')
-
 val = p.gradientDescent(xi,yi,theta,0.1,n,iterations)
 theta = val[0]
 jos = val[1]

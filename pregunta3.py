@@ -39,19 +39,8 @@ header = data[0]
 data[data==''] = "NaN"
 data           = data.astype(np.float)
 data = np.where(np.isnan(data), np.ma.array(data, mask=np.isnan(data)).mean(axis=0), data)
-normalizacion(data)
 # import pdb; pdb.set_trace()
 
-# for col in not_nominals:
-#     import pdb;pdb.set_trace()
-#     np.nanmean(data[1:,col])
-
-#     data[1:,col]
-
-
-# Completar vacíos para no nominales
-
-# Separando header de datos y convirtiendo a float
 
 np.random.shuffle(data)
 
@@ -59,40 +48,32 @@ np.random.shuffle(data)
 N = data.shape[0]
 n = data.shape[0]*0.8
 
-# Removiendo la primera columna de ids y agregando un vector de 1's para
-# poder realizar la regresión lineal
-training_d = np.column_stack((np.ones((n,1)),data[:n,:]))
+# Normalizando y agregando columna de 1's
+training_d = data[:n,:]
+mu,std     = normalizacion(training_d)
+training_d = np.column_stack((np.ones((training_d.shape[0],1)),training_d))
 
-# test_d     = np.column_stack((np.ones((N-n+1,1)),data[n:,:]))
+
 print("test shape=%s" % str(training_d.shape))
-iterations = 200
-x = np.array(training_d[:,:-1].tolist(), dtype=np.float128)
-y = training_d[:,-1].T.tolist()
-y = np.array(y[0], dtype=np.float128)
-theta      = np.ones(data.shape[1], dtype=np.float128)
-'''print('xxxxxxxx')
-print(len(training_d[:,:-1].T.tolist()))
-print(len(training_d[:,:-1].T.tolist()[0]))
-print('yyyyyyyy')
-print(len(training_d[:,-1].tolist()))
-print(len(training_d[:,-1].tolist()[0]))
-print('theta')
-print(len(theta.tolist()))
-print(len(theta.tolist()[0]))
-print('test')
-print(np.dot(theta,training_d[:,:-1].T))
-print(training_d.ndim)'''
+iterations = 100
+x     = np.array(training_d[:,:-1].tolist(), dtype=np.float128)
+y     = training_d[:,-1].T.tolist()
+y     = np.array(y[0], dtype=np.float128)
+theta = np.ones(data.shape[1], dtype=np.float128)
 
-res = gradientDescent(x
-                 ,y
-                 ,theta
-                 ,0.1
-                 ,n
-                 ,iterations)
+theta,costs = gradientDescent(x,y,theta,0.1,n,iterations)
+# print(theta)
 
-# trained_theta
 
-print(len(res[0]),len(res[1]))
-print(res[1])
+# Checking cost over testing set
+test_d  = data[n:,:]
+normalizacion(test_d,mu,std)
+# print(training_d.shape)
+test_d = np.column_stack((np.ones((test_d.shape[0],1)),test_d))
+# print(training_d.shape)
+x       = np.array(test_d[:,:-1].tolist(), dtype=np.float128)
+y       = test_d[:,-1].T.tolist()
+y       = np.array(y[0], dtype=np.float128)
 
-# RECORDAR REINICIAR THETA EN PREGUNTA 2
+print(costs)
+print(costFuntionJ(x,y,theta,N-n+1))
