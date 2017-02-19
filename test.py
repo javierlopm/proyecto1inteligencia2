@@ -4,9 +4,11 @@ import random
 def normalize(matrix,columns=None):
     mean = matrix.mean(0)
     std  = matrix.std(0)
+    
     if not columns:
         columns = range(0,matrix.shape[1])
     for i in columns:
+        print(type(std[i]))
         if std[i] != 0:
             matrix[:,i] = (matrix[:,i] - mean[i]) / std[i]
     # else:

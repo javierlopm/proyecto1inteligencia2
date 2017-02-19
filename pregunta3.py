@@ -89,6 +89,9 @@ res = gradientDescent(x
                  ,0.1
                  ,n
                  ,iterations)
+
+# trained_theta
+
 print(len(res[0]),len(res[1]))
 
 # RECORDAR REINICIAR THETA EN PREGUNTA 2
