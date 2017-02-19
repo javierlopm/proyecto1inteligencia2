@@ -127,8 +127,6 @@ print ("xx for alpha = 0,1 ----> %s" %xx)
 print("jos : %s"%jos)
 
 for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
-    # theta = [0]
-    # theta.extend([1]*m)
     theta      = np.ones(m+1, dtype=np.float128)
     theta[0] = 0
 
@@ -138,18 +136,12 @@ for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
     xx    = range(iterations)
     plt.plot(xx, jos, label="multi\nline")
     print ("theta for alpha = {} ----> {}".format(alpha,theta))
-    # print ("xx    for alpha = {} ----> {}".format(alpha,xx))
-    # print ("jos             = %s\n\n"%jos)
 
 # Impresion de Graficos y resultados
-#plt.yscale('log',basey=10)
 plt.show()
 
 
-#plt.scatter(xi[1], yi, s=20, alpha=0.5)
 xx = np.linspace(-1, 8)
-#plt.plot(xx, np.add(np.dot(theta[1],xx),theta[0]) , label="multi\nline")
-#plt.show()
 
 
 
