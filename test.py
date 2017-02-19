@@ -1,38 +1,46 @@
 import numpy as np
 import random
 
+def normalize(matrix,columns=None):
+    mean = matrix.mean(0)
+    std  = matrix.std(0)
+    if not columns:
+        columns = range(0,matrix.shape[1])
+    for i in columns:
+        if std[i] != 0:
+            matrix[:,i] = (matrix[:,i] - mean[i]) / std[i]
+    # else:
+    #     matrix = (matrix - mean) / std
+
+    return matrix
+
 # m denotes the number of examples here, not the number of features
 def gradientDescent(x, y, theta, alpha, m, numIterations):
-    if (type(theta) is list):
-        theta = np.array(theta)
-    if (type(x) is list):
-        x = np.array(x).T
-    if (type(y) is list):
-        y = np.array(y)
-    print(theta.shape)
-    print(x.shape)
-    print(y.shape)
-    print(type(theta))
-    print(type(x))
-    print(type(y))
-    costs = np.ones(numIterations)
-    xTrans = x.transpose()
+    # print(theta.shape)
+    # print(x.shape)
+    # print(y.shape)
+    # print(type(theta))
+    # print(type(x))
+    # print(type(y))
+    costs = np.zeros((numIterations,1))
     for i in range(0, numIterations):
         hypothesis = np.dot(x, theta)
-        if i == 0:
+        if i == -1:
             print('shapes1')
             print(y.shape)
             print(hypothesis.shape)
         loss = hypothesis - y
         # avg cost per example (the 2 in 2*m doesn't really matter here.
         # But to be consistent with the gradient, I include it)
-        costs[i]=(float(np.sum(np.power(loss,2))) / (2 * m))
+        costs[i]=(float(np.sum( loss * loss)) / (2 * m))
+        if not np.isinf(costs[i]):
+            print(costs[i])
         # avg gradient per example
-        if i == 0:
+        if i == -1:
             print('shapes')
-            print(xTrans.shape)
+            print(x.T.shape)
             print(loss.shape)
-        gradient = np.dot(xTrans, loss) / m
+        gradient = np.dot(x.T, loss) / m
         #print("%s grdient" % str(gradient.shape))
         # update
         theta = theta - alpha * gradient
