@@ -2,10 +2,11 @@
 import numpy     as np
 from csv         import reader
 #from pregunta1   import iteraciones
-from pregunta1        import *
+from pregunta1   import *
 from collections import Counter
 from decimal     import Decimal
 np.random.seed(42)
+
 
 # Convertir una columna de etiquetas a valores numéricos y colocar la moda en vacios
 def from_nominal(matrix):
@@ -54,26 +55,24 @@ mu,std     = normalizacion(training_d)
 training_d = np.column_stack((np.ones((training_d.shape[0],1)),training_d))
 
 
-print("test shape=%s" % str(training_d.shape))
-iterations = 100
+print("Model training and evaluations\n")
+# Training model
+iterations = 113
 x     = np.array(training_d[:,:-1].tolist(), dtype=np.float128)
 y     = training_d[:,-1].T.tolist()
 y     = np.array(y[0], dtype=np.float128)
 theta = np.ones(data.shape[1], dtype=np.float128)
-
 theta,costs = gradientDescent(x,y,theta,0.1,n,iterations)
-# print(theta)
-
+print("Training set cost: {}".format(costFuntionJ(x,y,theta,N-n+1)))
+eval_model(theta,x,y)
+print("\n")
 
 # Checking cost over testing set
 test_d  = data[n:,:]
 normalizacion(test_d,mu,std)
-# print(training_d.shape)
 test_d = np.column_stack((np.ones((test_d.shape[0],1)),test_d))
-# print(training_d.shape)
 x       = np.array(test_d[:,:-1].tolist(), dtype=np.float128)
 y       = test_d[:,-1].T.tolist()
 y       = np.array(y[0], dtype=np.float128)
-
-print(costs)
-print(costFuntionJ(x,y,theta,N-n+1))
+print("Testing set cost : {}".format(costFuntionJ(x,y,theta,N-n+1)))
+eval_model(theta,x,y)

@@ -55,17 +55,31 @@ def costFuntionJ(xi,yi,theta,n):
 
 # Normalizacion de datos para listas
 def normalizacion_l(xi,newlines,normal):
-	if normal == 1:
-		means = []
-		stds = []
-		for each in xi:
-			means.append(np.matrix(each).mean())
-			stds.append(np.matrix(each).std())
-		xni = np.transpose(np.divide((np.subtract(np.transpose(xi),means)),stds))
-		xnormalized = [[1]*(len(newlines)-1)]
-		xnormalized.extend(xni)
-	if normal == 0:
-		xnormalized = [[1]*(len(newlines)-1)]
-		xnormalized.extend(xi)
-	return(xnormalized)
+    if normal == 1:
+        means = []
+        stds = []
+        for each in xi:
+            means.append(np.matrix(each).mean())
+            stds.append(np.matrix(each).std())
+        xni = np.transpose(np.divide((np.subtract(np.transpose(xi),means)),stds))
+        xnormalized = [[1]*(len(newlines)-1)]
+        xnormalized.extend(xni)
+    if normal == 0:
+        xnormalized = [[1]*(len(newlines)-1)]
+        xnormalized.extend(xi)
+    return(xnormalized)
 
+def eval_model(theta,x,y):
+    err = theta * x - y
+
+    bias = np.mean(err)
+    print("Bias:"+str(bias))
+
+    max_dev = np.max(err)
+    print("Max Deviation:"+str(max_dev))
+
+    mean_dev = np.mean(np.absolute(err))
+    print("Mean Absolute Deviation:"+str(mean_dev))
+
+    mean_sqr_err = np.mean(np.power(err,2))
+    print("Mean Square Error:"+str(mean_sqr_err))
