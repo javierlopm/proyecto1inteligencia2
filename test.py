@@ -2,8 +2,10 @@ import numpy as np
 import random
 
 def normalize(matrix,columns=None):
-    mean = matrix.mean(0)
-    std  = matrix.std(0)
+    # mean = matrix.mean(0)
+    # std  = matrix.std(0)
+    mean = np.mean(matrix,0)
+    std  = np.std(matrix,0)
     
     if not columns:
         columns = range(0,matrix.shape[1])
