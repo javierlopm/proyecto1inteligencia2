@@ -10,7 +10,6 @@ import numpy as np
 import functools
 import operator as op
 import pregunta1 as p
-from test   import gradientDescent
 #Variables Globales
 iterations = 100
 
@@ -48,8 +47,8 @@ n = len(yi)
 theta = [0]
 theta.extend([1]*(len(xi)))
 
-#Normalizacion de datos
-xi = p.normalizacion(xi,newlines,1)
+#normalizacion_l de datos
+xi = p.normalizacion_l(xi,newlines,1)
 
 # Iteraciones del proceso
 print(len(xi))
@@ -61,7 +60,7 @@ print(1)
 print((np.dot(theta,xi)).ndim)
 print('SSSSSSSSSS')
 
-val = gradientDescent(xi,yi,theta,0.1,n,iterations)
+val = p.gradientDescent(xi,yi,theta,0.1,n,iterations)
 theta = val[0]
 jos = val[1]
 xx = range(iterations)
@@ -122,11 +121,11 @@ xx = range(0,100)
 jos =[]
 hoxys = []
 
-#Normalizacion de datos
-xi = p.normalizacion(xi,newlines,1)
+#normalizacion_l de datos
+xi = p.normalizacion_l(xi,newlines,1)
 
 # Iteraciones del proceso
-val = gradientDescent(xi,yi,theta,0.1,n,iterations)
+val = p.gradientDescent(xi,yi,theta,0.1,n,iterations)
 theta = val[0]
 jos = val[1]
 xx = range(iterations)
@@ -141,7 +140,7 @@ for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
     theta      = np.ones(m+1, dtype=np.float128)
     theta[0] = 0
 
-    val = gradientDescent(xi,yi,theta,alpha,n,iterations)
+    val = p.gradientDescent(xi,yi,theta,alpha,n,iterations)
     theta = val[0]
     jos   = val[1]
     xx    = range(iterations)

@@ -2,7 +2,7 @@
 import numpy     as np
 from csv         import reader
 #from pregunta1   import iteraciones
-from test        import gradientDescent,normalize
+from pregunta1        import *
 from collections import Counter
 from decimal     import Decimal
 np.random.seed(42)
@@ -39,7 +39,7 @@ header = data[0]
 data[data==''] = "NaN"
 data           = data.astype(np.float)
 data = np.where(np.isnan(data), np.ma.array(data, mask=np.isnan(data)).mean(axis=0), data)
-normalize(data)
+normalizacion(data)
 # import pdb; pdb.set_trace()
 
 # for col in not_nominals:
