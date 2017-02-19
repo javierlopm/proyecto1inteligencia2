@@ -58,20 +58,22 @@ jos = val[1]
 xx = range(iterations)
 
 # Impresion de Graficos y resultados 1.1 a)	
-plt.plot(xx, jos, label="multi\nline")
+plt.plot(xx, jos, label="alpha = 0.1")
 plt.title ('1.1 a) Convergencia de J(0) vs iteraciones para alpha = 0.1')
 plt.ylabel('Valor de J(0) en la iteracion')
 plt.xlabel('Numero de iteraciones')
+plt.legend()
 plt.show()
 
 # Impresion de Graficos y resultados 1.1 b)	
 plt.scatter(xi[1], yi, s=10, alpha=0.5)
 xx = np.linspace(-1, 8)
 print(len(theta))
-plt.plot(xx, np.add(np.dot(theta[1],xx),theta[0]) , label="multi\nline")
+plt.plot(xx, np.add(np.dot(theta[1],xx),theta[0]) , label="Linear Regression")
 plt.title ('1.1 b)  Scatteplot y curva min de funcion de costo')
 plt.ylabel('Valor de y ')
 plt.xlabel('Valor de x')
+plt.legend()
 plt.show()
 
 ################
@@ -117,15 +119,6 @@ hoxys = []
 xi = p.normalizacion_l(xi,newlines,1)
 
 # Iteraciones del proceso
-val = p.gradientDescent(xi,yi,theta,0.1,n,iterations)
-theta = val[0]
-jos = val[1]
-xx = range(iterations)
-plt.plot(xx, jos, label="multi\nline")
-print ("theta for alpha = 0,1 ----> %s" %theta)
-print ("xx for alpha = 0,1 ----> %s" %xx)
-print("jos : %s"%jos)
-
 for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
     theta      = np.ones(m+1, dtype=np.float128)
     theta[0] = 0
@@ -134,10 +127,11 @@ for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
     theta = val[0]
     jos   = val[1]
     xx    = range(iterations)
-    plt.plot(xx, jos, label="multi\nline")
+    plt.plot(xx, jos, label="alpha = %f" % alpha)
     print ("theta for alpha = {} ----> {}".format(alpha,theta))
 
 # Impresion de Graficos y resultados
+plt.legend()
 plt.show()
 
 

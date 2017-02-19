@@ -68,9 +68,7 @@ theta,costs = gradientDescent(x,y,theta,0.1,n,iterations)
 # Checking cost over testing set
 test_d  = data[n:,:]
 normalizacion(test_d,mu,std)
-# print(training_d.shape)
 test_d = np.column_stack((np.ones((test_d.shape[0],1)),test_d))
-# print(training_d.shape)
 x       = np.array(test_d[:,:-1].tolist(), dtype=np.float128)
 y       = test_d[:,-1].T.tolist()
 y       = np.array(y[0], dtype=np.float128)
