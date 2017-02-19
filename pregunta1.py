@@ -22,8 +22,6 @@ def normalizacion(matrix,mean=None,std=None,columns=None):
     for i in columns:
         if std[i] != 0:
             matrix[:,i] = (matrix[:,i] - mean[i]) / std[i]
-    # else:
-    #     matrix = (matrix - mean) / std
 
     return mean,std
 
