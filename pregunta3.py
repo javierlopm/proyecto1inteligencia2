@@ -47,7 +47,7 @@ np.random.shuffle(data)
 
 # Conjunto de entrenamiento y de prueba sin la columna de id's
 N = data.shape[0]
-n = data.shape[0]*0.8
+n = int(data.shape[0]*0.8)
 
 # Normalizando y agregando columna de 1's
 training_d = data[:n,:]

@@ -13,7 +13,7 @@ import numpy as np
 
 # Normalizacion de datos
 def normalizacion(matrix,mean=None,std=None,columns=None):
-    if mean == None:
+    if mean is None:
         mean = matrix.mean(0)
         std  = matrix.std(0)
     
