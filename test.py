@@ -14,7 +14,7 @@ def gradientDescent(x, y, theta, alpha, m, numIterations):
     print(type(theta))
     print(type(x))
     print(type(y))
-    costs = []
+    costs = np.ones(numIterations)
     xTrans = x.transpose()
     for i in range(0, numIterations):
         hypothesis = np.dot(x, theta)
@@ -25,7 +25,7 @@ def gradientDescent(x, y, theta, alpha, m, numIterations):
         loss = hypothesis - y
         # avg cost per example (the 2 in 2*m doesn't really matter here.
         # But to be consistent with the gradient, I include it)
-        costs.append(float(np.sum(np.power(loss,2))) / (2 * m))
+        costs[i]=(float(np.sum(np.power(loss,2))) / (2 * m))
         # avg gradient per example
         if i == 0:
             print('shapes')
