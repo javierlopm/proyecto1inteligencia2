@@ -16,43 +16,42 @@ def normalize(matrix,columns=None):
 
     return matrix
 
-def costFuntionJ(xi,yi,theta,n):
-    hoxy = np.dot(theta,xi)-yi
-    j = float(np.sum(np.power(hoxy,2)))/float(2*n)
-    return (j)
-
 # m denotes the number of examples here, not the number of features
 def gradientDescent(x, y, theta, alpha, m, numIterations):
-    # print(theta.shape)
-    # print(x.shape)
-    # print(y.shape)
-    # print(type(theta))
-    # print(type(x))
-    # print(type(y))
+    if (type(theta) is list):
+        theta = np.array(theta)
+    if (type(x) is list):
+        x = np.array(x).T
+    if (type(y) is list):
+        y = np.array(y)
+    print(theta.shape)
+    print(x.shape)
+    print(y.shape)
+    print(type(theta))
+    print(type(x))
+    print(type(y))
     costs = np.zeros((numIterations,1))
+    xTrans = x.transpose()
     for i in range(0, numIterations):
         hypothesis = np.dot(x, theta)
-        if i == -1:
+        if i == 0:
             print('shapes1')
             print(y.shape)
             print(hypothesis.shape)
         loss = hypothesis - y
         # avg cost per example (the 2 in 2*m doesn't really matter here.
         # But to be consistent with the gradient, I include it)
-        costs[i]=(float(np.sum( loss * loss)) / (2 * m))
-        if not np.isinf(costs[i]):
-            print(costs[i])
+        costs[i]=(float(np.sum(np.power(loss,2))) / (2 * m))
         # avg gradient per example
-        if i == -1:
+        if i == 0:
             print('shapes')
-            print(x.T.shape)
+            print(xTrans.shape)
             print(loss.shape)
-        gradient = np.dot(x.T, loss) / m
+        gradient = np.dot(xTrans, loss) / m
         #print("%s grdient" % str(gradient.shape))
         # update
         theta = theta - alpha * gradient
     return (theta,costs)
-
 
 def genData(numPoints, bias, variance):
     x = np.zeros(shape=(numPoints, 2))

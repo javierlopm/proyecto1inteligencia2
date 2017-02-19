@@ -10,7 +10,7 @@ import numpy as np
 import functools
 import operator as op
 import pregunta1 as p
-
+from test   import gradientDescent
 #Variables Globales
 iterations = 100
 
@@ -61,10 +61,10 @@ print(1)
 print((np.dot(theta,xi)).ndim)
 print('SSSSSSSSSS')
 
-val = p.iteraciones(xi,yi,n,theta,0.1,iterations)
+val = gradientDescent(xi,yi,theta,0.1,n,iterations)
 theta = val[0]
 jos = val[1]
-xx = val[2]
+xx = range(iterations)
 
 # Impresion de Graficos y resultados 1.1 a)	
 plt.plot(xx, jos, label="multi\nline")
@@ -126,26 +126,25 @@ hoxys = []
 xi = p.normalizacion(xi,newlines,1)
 
 # Iteraciones del proceso
-val = p.iteraciones(xi,yi,n,theta,0.1,iterations)
+val = gradientDescent(xi,yi,theta,0.1,n,iterations)
 theta = val[0]
 jos = val[1]
-xx = val[2]
+xx = range(iterations)
 plt.plot(xx, jos, label="multi\nline")
 print ("theta for alpha = 0,1 ----> %s" %theta)
 print ("xx for alpha = 0,1 ----> %s" %xx)
 print("jos : %s"%jos)
 
-
 for alpha in [0.1,0.3,0.5,0.7,0.9,1]:
     # theta = [0]
     # theta.extend([1]*m)
-    theta    = np.ones((1,m+1))
+    theta      = np.ones(m+1, dtype=np.float128)
     theta[0] = 0
 
-    val = p.iteraciones(xi,yi,n,theta,alpha,iterations)
+    val = gradientDescent(xi,yi,theta,alpha,n,iterations)
     theta = val[0]
     jos   = val[1]
-    xx    = val[2]
+    xx    = range(iterations)
     plt.plot(xx, jos, label="multi\nline")
     print ("theta for alpha = {} ----> {}".format(alpha,theta))
     # print ("xx    for alpha = {} ----> {}".format(alpha,xx))
