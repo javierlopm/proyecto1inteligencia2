@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy     as np
 from csv         import reader
-#from pregunta1   import iteraciones
 from pregunta1   import *
 from collections import Counter
 from decimal     import Decimal

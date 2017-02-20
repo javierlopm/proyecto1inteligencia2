@@ -6,11 +6,15 @@ graphics: yes
 
 #Introducción
 
-texto
+TEXTOHERECARLOS
 
-#Resultados y discusión
+#Detalles de implementación/experimentación.
 
-##Ejercicio1
+Se utilizaron las siguientes librerías:
+*numpy '1.11.3'
+*matplotlib '1.4.2'
+
+##Ejercicio 1
 
 Para el primer ejercicio implementamos las siguientes funciones: 
 
@@ -20,7 +24,26 @@ Para el primer ejercicio implementamos las siguientes funciones:
 * *normalizacion_l*: versión alternativa de normalización, agrega un vector de unos al inicio de la matriz.
 * *eval_model*: implementa las métricas necesaria para el modelo del ejercicio3.
 
-##Ejercicio2
+##Ejercicio 2
+
+Para este ejercicio se realizaron cambios ya que para ningún $\alpha$ utilizado se pudo obtener convergencia sin realizar antes normalización de los datos.
+
+Se tuvieron ciertos problemas con la obteción de los datos para las gráficas, pero se rediseñaron las funciones de la pregunta 1 para obteneralos adecuadamente.
+
+##Ejercicio 3
+
+Para realizar este ejercicio primero se limpiaron los datos, luego se tuvo que lidiar con los datos faltantes, para esto, en las columnas con datos de tipo nominal sustituimos por la moda de los datos y para el resto sustituimos con la media de tal manera que no modificara la media ni la desviación que posee. Luego de esto cambiamos lás columnas nominales por numéricas cambiando cada etiqueta por un valor diferente. 
+
+Posterior a esto separamos los datos en *training set* y *test set* haciendo *shuffle* de los datos, el resultado de esta mezcla de filas será siempre el mismo ya que mantenemos una semilla fija para este comportamiento "aleatorio" (*np.random.seed(42)*).
+
+Luego de esto normalizamos del conjunto de entrenamiento y almacenamos la media y la desviación para normalizar, posteriormente hacemos uso de este $\mu$ y $\sigma$ para normalizar el conjunto de pueba, hicimos esto ya que en la vida real uno no puede tener acceso a la media real del universo de datos sino solo de la muestra así que se debe almacenar la escala que se le aplica al entrenamiento.
+
+Para este ejercicio se realizaron varias pruebas hasta obtener un número de iteraciones adecuado, utilizando *113* como cantidad ideal de iteraciones.
+
+
+#Resultados y discusión
+
+##Ejercicio 2
 ###Parte 1
 Para la matriz de pesos corporales obtuvimos la siguiente curva de convergencia con alpha = 1 y realizando normalización de los datos
 
@@ -41,8 +64,6 @@ Aquí se puede observar como la mayoría de los datos se encuentran agrupados en
 
 ###Parte 2
 
-Para este ejercicio se realizaron cambios ya que para ningún $\alpha$ utilizado se pudo obtener convergencia sin realizar antes normalización de los datos.
-
 A continuación se muestra la comparación de las curvas de convergencia para todos los $\alpha$ haciendo uso de los datos normalizados
 
 \begin{center}
@@ -60,13 +81,7 @@ Para mostrar esto con un gran *learning rate* ($\alpha = 3$) se puede observar l
 \includegraphics[height=5cm]{sin_norm.png}
 \end{center}
 
-##Ejercicio3
-
-Para realizar este ejercicio primero se limpiaron los datos, luego se tuvo que lidiar con los datos faltantes, para esto, en las columnas con datos de tipo nominal sustituimos por la moda de los datos y para el resto sustituimos con la media de tal manera que no modificara la media ni la desviación que posee. Luego de esto cambiamos lás columnas nominales por numéricas cambiando cada etiqueta por un valor diferente. 
-
-Posterior a esto separamos los datos en *training set* y *test set* haciendo *shuffle* de los datos, el resultado de esta mezcla de filas será siempre el mismo ya que mantenemos una semilla fija para este comportamiento "aleatorio" (*np.random.seed(42)*).
-
-Luego de esto normalizamos del conjunto de entrenamiento y almacenamos la media y la desviación para normalizar, posteriormente hacemos uso de este $\mu$ y $\sigma$ para normalizar el conjunto de pueba, hicimos esto ya que en la vida real uno no puede tener acceso a la media real del universo de datos sino solo de la muestra así que se debe almacenar la escala que se le aplica al entrenamiento.
+##Ejercicio 3
 
 La siguiente tabla representa los resultados para las métricas planteadas y además la función de costo. Esto se realizó para 113 iteraciones que es en donde logramos minimizar la función de costo para el conjunto de prueba. 
 
@@ -89,3 +104,7 @@ Con más iteraciones se reduce el error del entrenamiento y aumenta el de prueba
 | Mean Square Error       | 0.1085           | 1.7802         |
 
 Podemos observar que ambos casos y ambos conjuntos de datos se obtuvo un *bias* o *sesgo* positvo, lo cual sugiere que el modelo tiende a sobrestimar los precios, aún así los valores son pequeños y en el training set tiende a cero. La máxima desviación de nuestro objetivo a aproxima fue de 16 al usar 114 iteraciones, esta peor predicción fue mejorada en el segundo modelo. La media de desviaciones absolutas o error promedio fue muy pequeño para el training set y pequeños pero cercanos a 1 en el conjunto de pruebas. Por último tenemos el error cuadrático medio.
+
+#Conclusiones
+
+TEXTOHERECARLOS
