@@ -39,7 +39,6 @@ header = data[0]
 data[data==''] = "NaN"
 data           = data.astype(np.float)
 data = np.where(np.isnan(data), np.ma.array(data, mask=np.isnan(data)).mean(axis=0), data)
-# import pdb; pdb.set_trace()
 
 
 np.random.shuffle(data)
