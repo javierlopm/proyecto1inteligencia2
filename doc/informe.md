@@ -6,7 +6,7 @@ graphics: yes
 
 #Introducción
 
-TEXTOHERECARLOS
+El objetivo de este proyecto es introducir algunos aspectos teóricos el método numérico del gradiente descendente, la regresión lineal y presentar una breve implementación en Python. La técnica de la regresión lineal se clasifica en la categoría del aprendizaje mecánico supervisado y dentro de esta es de tipo aprendizaje mecánico por regresión. El objetivo de la regresión lineal es ajustar una aplicación afín a un conjunto de datos. La idea es poder utilizar esta estrategia para predecir posibles resultados en un marco general de observaciones, permitiendo asi tener una funcion que reduzca el error en cada uno de sus puntos a fin de tener una proyección de los resultados de manera eficiente.  
 
 #Detalles de implementación/experimentación.
 
@@ -108,4 +108,8 @@ Podemos observar que ambos casos y ambos conjuntos de datos se obtuvo un *bias* 
 
 #Conclusiones
 
-TEXTOHERECARLOS
+* *Se puede observar como la regresion lineal en conjunto con el metodo de gradiente permiten conseguir un estimado proximo de una funcion que nos permita evaluar los datos de entrada generando un resultado proximo a lo esperado, validando asi los resultados de un conjunto de entrenamiento y siendo optimos para un grupo de pruebas.
+* *La funcion de costo a lo largo de las iteraciones siempre disminuira pero dependiendo del coeficiente de aprendizaje que se toma esta puede variar drasticamente permitiendo una convergencia en menor numero de iteraciones.
+* *Si el coeficiente de aprendizaje es bruscamente alterado la convergencia de la funcion puede ser comprometida generando que esta diverga y nunca logre alcanzar una aproximación cierta.
+* *A la hora de seleccionar un conjunto de entrenamiento se debe tener en cuenta el error del mismo puede generar un fallo si el conjunto no converge tras un numero elevado de iteraciones.
+* *Usualmente los datos deben ser normalizados para poder apreciar en un grafico con mayor detalle la convergencia de los mismos, esto devido a que si el error crece de manera desmesurada en alguno de los coeficientes de $\theta$, esto podria generar un overflow.
