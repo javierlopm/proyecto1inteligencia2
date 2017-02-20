@@ -11,8 +11,9 @@ TEXTOHERECARLOS
 #Detalles de implementación/experimentación.
 
 Se utilizaron las siguientes librerías:
-*numpy '1.11.3'
-*matplotlib '1.4.2'
+
+* *numpy '1.11.3'*
+* *matplotlib '1.4.2'*
 
 ##Ejercicio 1
 
